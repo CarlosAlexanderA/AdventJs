@@ -2,18 +2,10 @@ function checkSledJump (heights) {
   // ¡No olvides compartir tu solución en redes!
   const maxNum = heights.indexOf(Math.max(...heights))
   const isAsc = heights.slice(0, maxNum).every((item, index) => item < heights[index + 1])
-
-  const isDesc = heights.slice(maxNum).every((item, index) => {
-    // console.log(heights[index + maxNum + 1] ?? item - 1)
-    // console.log(heights[index + maxNum + 1] !== undefined ? heights[index + maxNum + 1] : item - 1)
+  const isDesc = heights.slice(maxNum).every((item, index, arr) => {
+    if (arr.length < 2) { return false }
     return item > (heights[index + maxNum + 1] !== undefined ? heights[index + maxNum + 1] : item - 1)
   })
-
-  // console.log(isDesc)
-  // for (let i = 0; i < maxNum; i++) {
-  //   const element = heights[i]
-  // }
-  console.log(isAsc && isDesc)
   return isAsc && isDesc
 }
 
